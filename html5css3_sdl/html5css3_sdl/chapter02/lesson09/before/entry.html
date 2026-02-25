@@ -7,7 +7,79 @@
 <meta name="description" content="我が家のアイドル、にゃんこ達を紹介します！可愛い猫写真を沢山掲載しています。">
 <link href="style.css" rel="stylesheet" media="all">
 </head>
+<style>
+a{color:blue;}
+a:hover{color:blueviolet;}
+body{background-color:#fbf9cc;
+    font-size: 15px;}
+h1{color:#6fbb9a;
+font-size:250%;}
 
+h2{color:#355c31;
+    border:#94c8b1 5px dotted;
+    border-left: #d0e35b 5px solid;
+    border-right:#d0e35b 5px solid;
+    padding: 5px 10px;
+    margin-bottom: 50px;
+    width:300px;
+    text-align:center;}
+dt{font-weight:700;}
+#nyanko{border-top:#6fbb9a 2px dotted;
+    border-bottom:#6fbb9a 2px dotted;
+    padding:15px;
+    text-align:center; }
+.more{text-align: right;}
+.cat-type{font-size: 80%;
+font-weight: normal;}
+.male{color:#2793a7;}
+.female{color:#df972f}
+h1 span{color:#d0e35b;}
+#wanko:first-letter{
+font-size: 2.5em}
+table.entryForm{
+    border-collapse: collapse;
+    width: 100%;
+    border: #f6bb9e 2px solid;}
+.entryForm th,
+.entryForm td{
+    padding: 5px 10px;
+    border: #f6bb9e 2px solid;}
+.entryForm td{
+    background-color: #fff;
+}
+.entryForm th{
+    width: 10em;
+    background-color: #ffeeee;
+    text-align: left;
+    vertical-align: top;}
+.entryForm textarea{
+    width: 200px;
+    height: 50px;px;
+    padding:100px;
+    border: #ccc 1px solod;}
+    .entryForm input[type = "text"],
+    .entryForm input[type = "email"]{
+        width: 400px;
+        padding: 5px;
+        border: #ccc 1px solid;}
+    .entryForm input:focus,
+    .entryForm textarea:focus{background-color: #ffffee;}
+    .btns{margin:30px;
+    text-align: center;}
+    .btns input{width: 100px;}
+    .btn{
+width:100px;
+margin: 0 10px;
+padding:10px;
+font-size:16px;
+border: None;}
+.btn:active{
+    color: #fff;}
+.btn-clear{background-color: #ccc;}
+.btn-send{background-color: #f6bb9e;}
+
+
+</style>
 <body>
 <div id="wrap">
 <h1>猫写真投稿フォーム</h1>
@@ -37,19 +109,19 @@
 <tr>
 <th>性別：</th>
 <td>
-<input type="radio" name="sex" value="男の子" checked>男の子
-<input type="radio" name="sex" value="女の子">女の子
+<input type="radio" name="sex" id="sex1" value="男の子"checked> <label for = "sex1">男の子</label>
+<input type="radio" name="sex" id = "sex2"  value="女の子"><label for = "sex2">女の子</label>
 </td>
 </tr>
 <tr>
 <th>好物：</th>
 <td>
-<input type="checkbox" name="like1" value="お魚">お魚
-<input type="checkbox" name="like2" value="お肉">お肉
-<input type="checkbox" name="like3" value="ミルク">ミルク
-<input type="checkbox" name="like4" value="カリカリ">カリカリ
-<input type="checkbox" name="like5" value="猫缶">猫缶
-<input type="checkbox" name="like6" value="甘いもの">甘いもの
+<input type="checkbox" name="like1" id="like1" value="お魚"><label for ="like1">お魚</label>
+<input type="checkbox" name="like2" id="like2" value="お肉"><label for ="like2">お肉</label>
+<input type="checkbox" name="like3" id="like3" value="ミルク"><label for ="like3">ミルク</label>
+<input type="checkbox" name="like4" id="like4" value="カリカリ"><label for ="like4">カリカリ</label>
+<input type="checkbox" name="like5" id="like5" value="猫缶"><label for ="like5">猫缶</label>
+<input type="checkbox" name="like6" id="like6" value="甘いもの"><label for ="like6">甘いもの</label>
 </td>
 </tr>
 <tr>
@@ -71,8 +143,8 @@
 </table>
 
 <div class="btns">
-<input type="reset" value="クリア">
-<input type="submit" value="投稿">
+<input type="reset" value="クリア" class="btn btn-clear">
+<input type="submit" value="投稿" class="btn btn-send">
 </div>
 
 </form>
