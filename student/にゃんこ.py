@@ -24,25 +24,55 @@ def okeru():
      if i == 1:
       white.append(left+8*a) #白の位置を見つける
      left += 1
-  for c in range(len(black)):  #右側置けるか
+  rightandleft(-1)
+  rightandleft(1)
+  upanddown(-1)
+  upanddown(1)
+  naname(-7) #右上
+  naname(7)  #左下
+  naname(-9) #左上
+  naname(9)  #右下
+
+ 
+def rightandleft(e):
+ for c in range(len(black)):  #右左
+  b = 0
+  while board[(black[c]+b)//8][(black[c]+b)%8] == 1 :
+   b += e
+  if (black[c]+b)%8 <= 7 and (black[c]-b)%8 >= 0:
+     b -= e
+  else:
+     break
+  if board[(black[c]+b)//8][(black[c]+b)%8] == 0:
+    board[(black[c]+b)//8][(black[c]+b)%8] = 3
+
+def upanddown(e):
+ for c in range(len(black)): #上下
    b = 0
-   while board[(black(c)+b)//8][(black(c)+b)%8] == 1 :
-    if (black(c)+b)%8 <7:
-     b += 1
+   while board[(black[c]+b)//8][(black[c]+b)%8] == 1:
+    b += e 
+    if black[c]-b<= -1 and black[c]+b >= 64:
+     b -= e
     else:
      break
-   if board[(black(c)+b)//8][(black(c)+b)%8] == 0 :
-    board[(black(c)+b)//8][(black(c)+b)%8] = 3
-  for c in range(len(black)):  #左側置けるか
-   b = 0
-   while board[(black(c)-b)//8][(black(c)-b)%8] == 1 :  
-    if (black(c)-b)%8 >0:
-     b += 1
-    else:
-     break
-   if board[(black(c)-b)//8][(black(c)-b)%8] == 0 :
-    board[(black(c)-b)//8][(black(c)-b)%8] = 3
-   
+   if board[(black[c]+b)//8][(black[c]+b)%8] == 0:
+    board[(black[c]+b)//8][(black[c]+b)%8] = 3
+  
+def naname(e):
+ for c in range(len(black)): #斜め
+  b = 0
+  while board[(black[c]+b)//8][(black[c]+b)%8] == 1:
+   b += e
+  if black[c]-b>-1 and black[c]+b< 64 and (black[c]+b)%8 <= 7 and (black[c]-b)%8 >= 0:
+    b -= e
+  else:
+   break
+  if board[(black[c]+b)//8][(black[c]+b)%8] == 0:
+     board[(black[c]+b)//8][(black[c]+b)%8] = 3
+
+
+    
+  
    
     
      
@@ -54,8 +84,34 @@ def okeru():
 okeru()
 print(black)
 print(white)
+print(board)
    
     
    
 
 
+   
+   
+    
+
+for c in range(len(black)): #上側置けるか
+   b = 0
+   while board[(black[c]+b)//8][(black[c]+b)%8] == 0:
+    if black[c]-b>7:
+     b -= 8
+    else:
+     break
+   if board[(black[c]+b)//8][(black[c]+b)%8] == 0:
+    board[(black[c]+b)//8][(black[c]+b)%8] = 3
+for c in range(len(black)):   #下側置けるか
+   b = 0
+   while board[(black[c]+b)//8][(black[c]+b)%8] == 1:
+    if black[c]+b< 56:
+     b += 8
+    else:
+     break
+    if board[(black[c]+b)//8][(black[c]+b)%8] == 0:
+     board[(black[c]+b)//8][(black[c]+b)%8] = 3
+
+
+    
