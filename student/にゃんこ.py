@@ -16,15 +16,15 @@ def okeru():
    left = 0
    for i in board[a]:
      if i == 2:
-      black.append(left+8*a)
+      black.append(left+8*a) #黒の位置を見つける
      left += 1
   for a in range(8):
    left = 0
    for i in board[a]:
      if i == 1:
-      white.append(left+8*a)
+      white.append(left+8*a) #白の位置を見つける
      left += 1
-  for c in range(len(black)):  #right
+  for c in range(len(black)):  #右側置けるか
    b = 0
    while board[(black(c)+b)//8][(black(c)+b)%8] == 1 :
     if (black(c)+b)%8 <7:
@@ -33,7 +33,7 @@ def okeru():
      break
    if board[(black(c)+b)//8][(black(c)+b)%8] == 0 :
     board[(black(c)+b)//8][(black(c)+b)%8] = 3
-  for c in range(len(black)):  #left
+  for c in range(len(black)):  #左側置けるか
    b = 0
    while board[(black(c)-b)//8][(black(c)-b)%8] == 1 :  
     if (black(c)-b)%8 >0:
