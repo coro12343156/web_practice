@@ -13,6 +13,7 @@
 		margin:30px auto;
 		border:#000 2px solid;
 		background-color:#ccc;
+		position:relative;
 }
 
 p{
@@ -25,4 +26,8 @@ p{
 	width:15px;
 	padding:10px;
 	background:#f00;
+	position:absolute;
+	right:-30px;
+	top:0;
+	z-index:-1;
 }

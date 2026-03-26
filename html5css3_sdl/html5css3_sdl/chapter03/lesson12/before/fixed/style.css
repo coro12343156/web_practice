@@ -25,6 +25,9 @@ p{
 	width:100%;
 	padding:10px 0;
 	background-color:#f00;
+    position:fixed;
+	left:0;
+	bottom:0;
 }
 
 /*ページトップへ*/
