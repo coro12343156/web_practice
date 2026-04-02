@@ -30,6 +30,9 @@ p{
 	height:100px;
 	background-color:#f00;
 	float:right;
+	position:relative;
+	right:-30px;
+	top:0;
 }
 
 .clear{
