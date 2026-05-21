@@ -16,8 +16,9 @@ white = []
 batu = []
 black_okeru = []
 white_okeru = []
-hantai = []
+hantai = {}
 w = 100
+j = []
 
 
 def kuro_okeru():
@@ -33,8 +34,8 @@ def kuro_okeru():
             if i == 1:
                 white.append(left + 8 * a)  # 白の位置を見つける
             left += 1
-    rightandleft(1, black, black_okeru, 1, 3, "right")  # 右
-    rightandleft(-1, black, black_okeru, 1, 3, "left")  # 左
+    rightandleft(1, black, black_okeru, 1, 3)  # 右
+    rightandleft(-1, black, black_okeru, 1, 3)  # 左
     upanddown(-8, black, black_okeru, 1, 3)  # 上
     upanddown(8, black, black_okeru, 1, 3)  # 下
     naname(-7, black, black_okeru, 1, 3)  # 右上
@@ -56,8 +57,8 @@ def shiro_okeru():
             if i == 2:
                 black.append(left + 8 * a)  # 黒の位置を見つける
             left += 1
-    rightandleft(1, white, white_okeru, 2, 3, "right")  # 右
-    rightandleft(-1, white, white_okeru, 2, 3, "left")  # 左
+    rightandleft(1, white, white_okeru, 2, 3)  # 右
+    rightandleft(-1, white, white_okeru, 2, 3)  # 左
     upanddown(-8, white, white_okeru, 2, 3)  # 上
     upanddown(8, white, white_okeru, 2, 3)  # 下
     naname(-7, white, white_okeru, 2, 3)  # 右上
@@ -66,32 +67,41 @@ def shiro_okeru():
     naname(9, white, white_okeru, 2, 3)  # 右下
 
 
-def rightandleft(e, f, g, h, i, j):
-    hantai = {}
+def rightandleft(e, f, g, h, i):
+    global j
     for c in range(len(f)):  # 右左
         b = e  # 一つ移動する
         if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 一つ移動した先は白？
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 白を抜けるまで進む
+                j.append(f[c] + b)
                 b += e
-                hantai["j"] = f[c] + b
+            print(hantai)
             if (
                 board[(f[c] + b) // 8][(f[c] + b) % 8] == 0
             ):  # 今いる場所にコマは置かれてない？
-                if e == 1 and (f[c]) % 8 < (f[c] + b) % 8:  # 右の条件
-                    board[(f[c] + b) // 8][(f[c] + b) % 8] = i
-                    g.append(f[c] + b)
-                elif e == -1 and (f[c]) % 8 > (f[c] + b) % 8:  # 左の条件
-                    board[(f[c] + b) // 8][(f[c] + b) % 8] = i
-                    g.append(f[c] + b)
+              hantai[f[c]][e] = {"kaesu":j,"sitei":f[c] + b}
+              hantai[f[c]] = {e:{"kaesu":j,"sitei":f[c] + b}}
+              print(hantai)
+              j = []
+              if e == 1 and (f[c]) % 8 < (f[c] + b) % 8:  # 右の条件
+                  board[(f[c] + b) // 8][(f[c] + b) % 8] = i
+                  g.append(f[c] + b)
+              elif e == -1 and (f[c]) % 8 > (f[c] + b) % 8:  # 左の条件
+                  board[(f[c] + b) // 8][(f[c] + b) % 8] = i
+                  g.append(f[c] + b)
 
 
 def upanddown(e, f, g, h, i):
+    global j
     for c in range(len(f)):  # 上下
         b = e
         if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
+                j.append(f[c] + b)
                 b += e
             if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
+                hantai[f[c]] ={e:{"kaesu":j,"sitei":f[c] + b}}
+                j = []
                 if e == -8 and (f[c] + b) >= 0:
                     board[(f[c] + b) // 8][(f[c] + b) % 8] = i
                     g.append(f[c] + b)
@@ -101,12 +111,16 @@ def upanddown(e, f, g, h, i):
 
 
 def naname(e, f, g, h, i):
+    global j
     for c in range(len(f)):  # 斜め
         b = e
         if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
+                j.append(f[c] + b)
                 b += e
             if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
+                hantai[f[c]] ={e:{"kaesu":j,"sitei":f[c] + b}}  #返す場所を辞書に保存
+                j = []
                 if e == -7 and (f[c]) % 8 < (f[c] + b) % 8 and (f[c] + b) >= 0:  # 右上
                     board[(f[c] + b) // 8][(f[c] + b) % 8] = i
                     g.append(f[c] + b)
@@ -168,10 +182,10 @@ def reset():
         board[a // 8][a % 8] = 0
 
 
-def kaesu_kuro():
-    pass
+def kaesu_kuro(w):
+    print(hantai)
 
-def kaesu_shiro():
+def kaesu_shiro(w):
     pass
 
 
