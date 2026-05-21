@@ -16,7 +16,7 @@ white = []
 batu = []
 black_okeru = []
 white_okeru = []
-hantai = []
+hantai = {}
 w = 100
 j = []
 
@@ -73,12 +73,15 @@ def rightandleft(e, f, g, h, i):
         b = e  # 一つ移動する
         if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 一つ移動した先は白？
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 白を抜けるまで進む
-                b += e
                 j.append(f[c] + b)
+                b += e
+            print(hantai)
             if (
                 board[(f[c] + b) // 8][(f[c] + b) % 8] == 0
             ):  # 今いる場所にコマは置かれてない？
-              hantai[f[c]] ={e:{"kaesu":j,"sitei":f[c] + b}}
+              hantai[f[c]][e] = {"kaesu":j,"sitei":f[c] + b}
+              hantai[f[c]] = {e:{"kaesu":j,"sitei":f[c] + b}}
+              print(hantai)
               j = []
               if e == 1 and (f[c]) % 8 < (f[c] + b) % 8:  # 右の条件
                   board[(f[c] + b) // 8][(f[c] + b) % 8] = i
@@ -94,8 +97,8 @@ def upanddown(e, f, g, h, i):
         b = e
         if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
-                b += e
                 j.append(f[c] + b)
+                b += e
             if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
                 hantai[f[c]] ={e:{"kaesu":j,"sitei":f[c] + b}}
                 j = []
@@ -113,8 +116,8 @@ def naname(e, f, g, h, i):
         b = e
         if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
-                b += e
                 j.append(f[c] + b)
+                b += e
             if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
                 hantai[f[c]] ={e:{"kaesu":j,"sitei":f[c] + b}}  #返す場所を辞書に保存
                 j = []
@@ -179,10 +182,10 @@ def reset():
         board[a // 8][a % 8] = 0
 
 
-def kaesu_kuro():
-    pass
+def kaesu_kuro(w):
+    print(hantai)
 
-def kaesu_shiro():
+def kaesu_shiro(w):
     pass
 
 
