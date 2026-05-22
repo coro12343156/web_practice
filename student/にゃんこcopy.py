@@ -75,13 +75,11 @@ def rightandleft(e, f, g, h, i):
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 白を抜けるまで進む
                 j.append(f[c] + b)
                 b += e
-            print(hantai)
-            if (
-                board[(f[c] + b) // 8][(f[c] + b) % 8] == 0
-            ):  # 今いる場所にコマは置かれてない？
-              hantai[f[c]][e] = {"kaesu":j,"sitei":f[c] + b}
-              hantai[f[c]] = {e:{"kaesu":j,"sitei":f[c] + b}}
-              print(hantai)
+            if (board[(f[c] + b) // 8][(f[c] + b) % 8] == 0):
+              try:  # 今いる場所にコマは置かれてない？
+                hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
+              except:
+                  hantai[f[c]] = {e:{"kaesu":j,"sitei":f[c]+b}}
               j = []
               if e == 1 and (f[c]) % 8 < (f[c] + b) % 8:  # 右の条件
                   board[(f[c] + b) // 8][(f[c] + b) % 8] = i
@@ -100,7 +98,10 @@ def upanddown(e, f, g, h, i):
                 j.append(f[c] + b)
                 b += e
             if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
-                hantai[f[c]] ={e:{"kaesu":j,"sitei":f[c] + b}}
+                try:
+                  hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
+                except:
+                    hantai[f[c]] = {e:{"kaesu":j,"sitei":f[c]+b}}  
                 j = []
                 if e == -8 and (f[c] + b) >= 0:
                     board[(f[c] + b) // 8][(f[c] + b) % 8] = i
@@ -119,7 +120,10 @@ def naname(e, f, g, h, i):
                 j.append(f[c] + b)
                 b += e
             if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
-                hantai[f[c]] ={e:{"kaesu":j,"sitei":f[c] + b}}  #返す場所を辞書に保存
+                try:
+                  hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
+                except: #返す場所を辞書に保存
+                    hantai[f[c]] = {e:{"kaesu":j,"sitei":f[c]+b}}
                 j = []
                 if e == -7 and (f[c]) % 8 < (f[c] + b) % 8 and (f[c] + b) >= 0:  # 右上
                     board[(f[c] + b) // 8][(f[c] + b) % 8] = i
