@@ -75,7 +75,7 @@ def rightandleft(e, f, g, h, i):
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 白を抜けるまで進む
                 j.append(f[c] + b)
                 b += e
-            if (board[(f[c] + b) // 8][(f[c] + b) % 8] == 0):
+            if (board[(f[c] + b) // 8][(f[c] + b) % 8] == h):
               try:  # 今いる場所にコマは置かれてない？
                 hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
               except:
@@ -97,7 +97,7 @@ def upanddown(e, f, g, h, i):
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
                 j.append(f[c] + b)
                 b += e
-            if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
+            if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
                 try:
                   hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
                 except:
@@ -119,7 +119,7 @@ def naname(e, f, g, h, i):
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
                 j.append(f[c] + b)
                 b += e
-            if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
+            if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
                 try:
                   hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
                 except: #返す場所を辞書に保存
