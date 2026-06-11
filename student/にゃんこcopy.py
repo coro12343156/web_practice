@@ -10,6 +10,7 @@ board = [
 ]
 
 import random
+import time
 
 black = []
 white = []
@@ -34,14 +35,14 @@ def kuro_okeru():
             if i == 1:
                 white.append(left + 8 * a)  # 白の位置を見つける
             left += 1
-    rightandleft(1, black, black_okeru, 1, 3)  # 右
-    rightandleft(-1, black, black_okeru, 1, 3)  # 左
-    upanddown(-8, black, black_okeru, 1, 3)  # 上
-    upanddown(8, black, black_okeru, 1, 3)  # 下
-    naname(-7, black, black_okeru, 1, 3)  # 右上
-    naname(7, black, black_okeru, 1, 3)  # 左下
-    naname(-9, black, black_okeru, 1, 3)  # 左上
-    naname(9, black, black_okeru, 1, 3)  # 右下
+    右左(1, black, black_okeru, 1, 3)  # 右
+    右左(-1, black, black_okeru, 1, 3)  # 左
+    上下(-8, black, black_okeru, 1, 3)  # 上
+    上下(8, black, black_okeru, 1, 3)  # 下
+    斜め(-7, black, black_okeru, 1, 3)  # 右上
+    斜め(7, black, black_okeru, 1, 3)  # 左下
+    斜め(-9, black, black_okeru, 1, 3)  # 左上
+    斜め(9, black, black_okeru, 1, 3)  # 右下
 
 
 def shiro_okeru():
@@ -57,17 +58,17 @@ def shiro_okeru():
             if i == 2:
                 black.append(left + 8 * a)  # 黒の位置を見つける
             left += 1
-    rightandleft(1, white, white_okeru, 2, 3)  # 右
-    rightandleft(-1, white, white_okeru, 2, 3)  # 左
-    upanddown(-8, white, white_okeru, 2, 3)  # 上
-    upanddown(8, white, white_okeru, 2, 3)  # 下
-    naname(-7, white, white_okeru, 2, 3)  # 右上
-    naname(7, white, white_okeru, 2, 3)  # 左下
-    naname(-9, white, white_okeru, 2, 3)  # 左上
-    naname(9, white, white_okeru, 2, 3)  # 右下
+    右左(1, white, white_okeru, 2, 3)  # 右
+    右左(-1, white, white_okeru, 2, 3)  # 左
+    上下(-8, white, white_okeru, 2, 3)  # 上
+    上下(8, white, white_okeru, 2, 3)  # 下
+    斜め(-7, white, white_okeru, 2, 3)  # 右上
+    斜め(7, white, white_okeru, 2, 3)  # 左下
+    斜め(-9, white, white_okeru, 2, 3)  # 左上
+    斜め(9, white, white_okeru, 2, 3)  # 右下
 
 
-def rightandleft(e, f, g, h, i):
+def 右左(e, f, g, h, i):
     global j
     for c in range(len(f)):  # 右左
         b = e  # 一つ移動する
@@ -75,7 +76,7 @@ def rightandleft(e, f, g, h, i):
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 白を抜けるまで進む
                 j.append(f[c] + b)
                 b += e
-            if (board[(f[c] + b) // 8][(f[c] + b) % 8] == h):
+            if (board[(f[c] + b) // 8][(f[c] + b) % 8] == 0):
               try:  # 今いる場所にコマは置かれてない？
                 hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
               except:
@@ -89,7 +90,7 @@ def rightandleft(e, f, g, h, i):
                   g.append(f[c] + b)
 
 
-def upanddown(e, f, g, h, i):
+def 上下(e, f, g, h, i):
     global j
     for c in range(len(f)):  # 上下
         b = e
@@ -97,7 +98,7 @@ def upanddown(e, f, g, h, i):
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
                 j.append(f[c] + b)
                 b += e
-            if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
+            if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
                 try:
                   hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
                 except:
@@ -111,7 +112,7 @@ def upanddown(e, f, g, h, i):
                     g.append(f[c] + b)
 
 
-def naname(e, f, g, h, i):
+def 斜め(e, f, g, h, i):
     global j
     for c in range(len(f)):  # 斜め
         b = e
@@ -119,7 +120,7 @@ def naname(e, f, g, h, i):
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
                 j.append(f[c] + b)
                 b += e
-            if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:
+            if board[(f[c] + b) // 8][(f[c] + b) % 8] == 0:
                 try:
                   hantai[f[c]][e] ={"kaesu":j,"sitei":f[c] + b}
                 except: #返す場所を辞書に保存
@@ -143,11 +144,6 @@ def naname(e, f, g, h, i):
                 ):  # 右下
                     board[(f[c] + b) // 8][(f[c] + b) % 8] = i
                     g.append(f[c] + b)
-
-
-def show():
-    for a in board:
-        print(" ".join(str(b) for b in a))
 
 
 def show_color():
@@ -175,6 +171,8 @@ def okerubasyo_shiro():
 
 
 def reset():
+    global hantai 
+    hantai= {}
     for a in range(8):
         left = 0
         for i in board[a]:
@@ -188,9 +186,22 @@ def reset():
 
 def kaesu_kuro(w):
     print(hantai)
+    for a,b in hantai.items():
+        for c,d in b.items():
+            if int(w) == d["sitei"]:
+                board[d["sitei"]//8][d["sitei"]%8] =2
+                for i in d["kaesu"]:
+                 board[i // 8][i % 8] = 2
+            
+
 
 def kaesu_shiro(w):
-    pass
+    for a,b in hantai.items():
+        for c,d in b.items():
+            if int(w) == d["sitei"]:
+                board[d["sitei"]//8][d["sitei"]%8] =1
+                for i in d["kaesu"]:
+                 board[i // 8][i % 8] = 1
 
 
 
@@ -199,7 +210,8 @@ for i in range(10):
     show_color()
     okerubasyo_kuro()
     reset()
-
+    show_color()
+    time.sleep(1)
     shiro_okeru()
     okerubasyo_shiro()
     reset()
