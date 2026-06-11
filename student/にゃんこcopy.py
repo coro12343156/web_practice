@@ -157,8 +157,8 @@ def show_color():
 
 
 def okerubasyo_kuro():
-    w = input("置ける場所を指定してください")
-    if int(w) in black_okeru:
+    w = int(input("置ける場所を指定してください"))
+    if w in black_okeru:
         kaesu_kuro(w)
         # board[int(w) // 8][int(w) % 8] = 2
     else:
@@ -188,9 +188,16 @@ def reset():
 
 def kaesu_kuro(w):
     print(hantai)
+    for moto_kuro, v1 in hantai.items():
+        for muki, v2 in v1.items():
+            if v2["sitei"] == w:
+                for koma in v2["kaesu"]:
+                    board[koma // 8][koma % 8] = 2
+    board[w // 8][w % 8] = 2
+    
 
 def kaesu_shiro(w):
-    pass
+    print(hantai)
 
 
 
