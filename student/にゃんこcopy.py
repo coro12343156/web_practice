@@ -153,8 +153,8 @@ def show_color():
 
 
 def okerubasyo_kuro():
-    w = input("置ける場所を指定してください")
-    if int(w) in black_okeru:
+    w = int(input("置ける場所を指定してください"))
+    if w in black_okeru:
         kaesu_kuro(w)
         # board[int(w) // 8][int(w) % 8] = 2
     else:
