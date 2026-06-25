@@ -19,7 +19,6 @@ black_okeru = []
 white_okeru = []
 hantai = {}
 w = 100
-j = []
 
 
 def kuro_okeru():
@@ -69,8 +68,8 @@ def shiro_okeru():
 
 
 def 右左(e, f, g, h, i):
-    global j
     for c in range(len(f)):  # 右左
+        j = []
         b = e  # 一つ移動する
         if board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 一つ移動した先は白？
             while board[(f[c] + b) // 8][(f[c] + b) % 8] == h:  # 白を抜けるまで進む

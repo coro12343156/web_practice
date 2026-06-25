@@ -199,12 +199,16 @@ def reset():
 
 def show_color():
     table = {2: "●", 1: "○", 3: "×", 0: "□"}
-    for a in board:
-        print(" ".join(table[b] for b in a))
+    print("  1 2 3 4 5 6 7 8")
+    for i,a in enumerate(board):
+        print(str(i+1)+" "+(" ".join(table[b] for b in a)))
 
 
 def okerubasyo_kuro():
-    w = int(input("置ける場所を指定してください"))
+    w =input("置ける場所を指定してください")
+    w1 = w[0]
+    w2 = w[1]
+    w =(int(w1)-1)*8+int(w2)-1
     if w in black_okeru:
         kaesu_kuro(w)
         # board[int(w) // 8][int(w) % 8] = 2
@@ -241,17 +245,16 @@ def kaesu_shiro(w):
 
 
 
-for i in range(10):
+while True:
+    print()
     kuro_okeru()
     show_color() 
     okerubasyo_kuro()
-    print(hantai)
     show_color()
+    print()
     reset()
     time.sleep(1)
-    print()
-
     shiro_okeru()
     okerubasyo_shiro()
-    print(hantai)
+    show_color()
     reset()
